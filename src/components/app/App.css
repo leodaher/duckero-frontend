@@ -1,0 +1,36 @@
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.app-header {
+  background-color: #05386B;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #f1faee;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.particles-override {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
