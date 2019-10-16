@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import SocialBar from '../../components/social-bar';
 import RBContainer from '../../components/rb-container';
-import { Redirect } from 'react-router-dom';
 
 import '../../components/app/App.css';
 
@@ -12,10 +11,6 @@ export default class Waitlist extends Component {
     }
 
     render() {
-        if (!this.props.isAuthenticated) {
-            return <Redirect to='/' />
-        }
-
         const {ranking, link} = this.props.location.state;
         return (
             <div className='app'>
