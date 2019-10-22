@@ -13,6 +13,7 @@ export default class Home extends Component {
     this.state = {
       email: null,
       ref: null,
+      redirect: null,
     };
   }
 
@@ -36,12 +37,13 @@ export default class Home extends Component {
       })
     }).then(response => response.json())
       .then((data) => {
+          window.sessionStorage.setItem('rb_auth_token', data.token);
           this.setState({
               redirect: true,
               email: data.user.email,
-              ranking: data.user.ranking,
               link: data.user.link,
-          })
+              ranking: data.user.ranking
+          });
       });
   }
 
@@ -49,6 +51,7 @@ export default class Home extends Component {
     if (this.state.redirect) {
         return <Redirect push to={{pathname: '/waitlist', state: this.state}} />
     }
+
     return (
       <div className="app">
         <Container fluid={true} className="app-header">
