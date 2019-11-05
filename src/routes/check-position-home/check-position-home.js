@@ -10,6 +10,7 @@ const CheckPositionButton = props => {
       <Button
         style={{ height: "100%", backgroundColor: "#8EE4AF" }}
         variant="contained"
+        onClick={props.handleClick}
       >
         Verificar posição
       </Button>
@@ -42,10 +43,15 @@ export default class CheckPositionHome extends Component {
       })
       .then(data => {
         this.setState({
-          user: data.user,
-          redirectToWaitlist: true
+          user: data.user
         });
       });
+  }
+
+  handleCheckPositionClick() {
+    this.setState({
+      redirectToWaitlist: true
+    });
   }
 
   render() {
@@ -71,7 +77,9 @@ export default class CheckPositionHome extends Component {
             <br />
             Stop paying up to $10 for every trade
           </h1>
-          <CheckPositionButton />
+          <CheckPositionButton
+            handleClick={() => this.handleCheckPositionClick()}
+          />
         </Container>
       </div>
     );
