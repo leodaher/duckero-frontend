@@ -3,6 +3,7 @@ import { Row, Col, Container } from "react-bootstrap";
 import { TextField, Button } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
 import { ParticlesBackground } from "../../components/particles-background";
+import { ClipLoader } from "react-spinners";
 
 const qs = require("query-string");
 
@@ -11,12 +12,17 @@ class SignUpForm extends Component {
     super(props);
 
     this.state = {
-      email: null
+      email: null,
+      loading: false
     };
   }
 
   signUp() {
     const ref = this.props.ref;
+    this.setState({
+      loading: true
+    });
+
     fetch("http://127.0.0.1:5000/sign_up", {
       headers: {
         Accept: "text/plain",
@@ -33,11 +39,9 @@ class SignUpForm extends Component {
   }
 
   render() {
+    const { loading } = this.state;
     return (
-      <Row
-        style={{ width: "40%", marginTop: "100px" }}
-        className="justify-content-center"
-      >
+      <Row style={{ marginTop: "100px" }} className="justify-content-center">
         <Col xs={12} md={9} className="p-0">
           <TextField
             style={{
@@ -52,13 +56,21 @@ class SignUpForm extends Component {
             variant="filled"
           />
         </Col>
-        <Col xs={12} md={3} className="p-0">
+        <Col xs={12} md={3} className="pl-2">
           <Button
             onClick={() => this.signUp()}
-            style={{ height: "100%", backgroundColor: "#8EE4AF" }}
+            style={{
+              height: "100%",
+              width: "100%",
+              backgroundColor: "#8EE4AF"
+            }}
             variant="contained"
           >
-            Cadastrar
+            {loading ? (
+              <ClipLoader size={30} color={"#000000"} loading={true} />
+            ) : (
+              <a>Cadastrar</a>
+            )}
           </Button>
         </Col>
       </Row>
@@ -108,10 +120,12 @@ export default class Home extends Component {
             <br />
             Stop paying up to $10 for every trade
           </h1>
-          <SignUpForm
-            ref={this.state.ref}
-            postSignUp={this.handleSignUpSuccess}
-          />
+          <Col className="col-sm-12 col-md-8 col-lg-6">
+            <SignUpForm
+              ref={this.state.ref}
+              postSignUp={this.handleSignUpSuccess}
+            />
+          </Col>
         </Container>
       </div>
     );
