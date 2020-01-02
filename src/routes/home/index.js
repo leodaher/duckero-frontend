@@ -52,7 +52,7 @@ class SignUpForm extends Component {
             variant="filled"
           />
         </Col>
-        <Col xs={12} md={3} className="p-0 mt-2">
+        <Col xs={12} md={3} className="p-0">
           <Button
             onClick={() => this.signUp()}
             style={{ height: "100%", backgroundColor: "#8EE4AF" }}
